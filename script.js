@@ -93,7 +93,7 @@ function initArray(size = 15) {
     array = [];
     domElements = [];
     stopAnimation(); // إيقاف أي حركة عند إعادة توليد مصفوفة جديدة
-    
+    display();
     const totalWidth = size * ELEMENT_WIDTH + (size - 1) * SPACING;
     const startOffset = (container.clientWidth - totalWidth) / 2;
 
