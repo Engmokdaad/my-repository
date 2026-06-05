@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكي خوارزميات المصفوفات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h2>تصوير حي لخوارزميات المصفوفات</h2><br>
+        <button onclick="initArray()">توليد مصفوفة جديدة</button>
+        <button id="speed" onclick="editSpeed()">speed (×1)</button>
+        <div class="controls">
+            <button id="btn1" onclick="undisplay();bubbleSort()">bubble sort</button>
+            <button id="btn2" onclick="undisplay();insertionSort()">insertion sort</button>
+            <button id="btn3" onclick="undisplay();selectionSort()">selection sort</button>
+            <button id="btn4" onclick="undisplay();mergeSort()">merge sort</button>
+            <button id="btn5" onclick="undisplay();quickSort()">quick sort</button>
+        </div>
+    </div>
+
+    <div class="visualizer-wrapper">
+        <div id="array-container"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

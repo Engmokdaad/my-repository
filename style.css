@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    background-color: #8234db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#array-container {
+    margin-top: 20px;
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.array-element {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    background-color: #3498db; /* اللون الافتراضي */
+    border-radius: 4px 4px 0 0;
+    transition: left 0.4s ease, background-color 0.4s ease, height 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+
+/* فئات مساعدة لتغيير الألوان أثناء العمليات */
+.array-element.active {
+    background-color: #e74c3c !important; /* لون العنصر أثناء المقارنة أو التبديل */
+}
+
+.array-element.sorted {
+    background-color: #2ecc71 !important; /* لون العنصر عند استقراره في مكانه النهائي */
+}
+
+/* غلاف يجمع حاوية المتغير وحاوية المصفوفة */
+.visualizer-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px; /* مسافة بين المتغير والمصفوفة */
+}
+
+/* حاوية المتغير الخارجي */
+.variable-container {
+    position: relative;
+    width: 80px;
+    height: 400px; /* نفس ارتفاع حاوية المصفوفة */
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 2px dashed #7f8c8d; /* تمييزها بخط متقطع لتبدو كخانة ذاكرة */
+}
+
+/* عنوان المتغير */
+.variable-label {
+    position: absolute;
+    top: 15px;
+    color: #f39c12; /* لون ذهبي للفت الانتباه */
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* تعديل لعنصر المصفوفة ليكون ثابتاً داخل حاوية المتغير */
+.static-element {
+    position: absolute; 
+    bottom: 0;
+    left: auto; /* إلغاء خاصية left لأننا لا نحتاج لتحريكه يميناً ويساراً */
+    background-color: #9b59b6; /* لون بنفسجي لتمييزه عن عناصر المصفوفة الزرقاء */
+    height: 0; /* يبدأ بارتفاع 0 */
+    color: transparent; /* إخفاء النص في البداية */
+    transition: height 0.4s ease, background-color 0.4s ease;
+}
