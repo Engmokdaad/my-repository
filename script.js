@@ -89,6 +89,7 @@ function sleep(ms) {
  * دالة لتهيئة أو إعادة بناء المصفوفة بقيم عشوائية
  */
 function initArray(size = 15) {
+    display();
     container.innerHTML = '';
     array = [];
     domElements = [];
