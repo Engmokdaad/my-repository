@@ -89,7 +89,6 @@ function sleep(ms) {
  * دالة لتهيئة أو إعادة بناء المصفوفة بقيم عشوائية
  */
 function initArray(size = 15) {
-    display();
     container.innerHTML = '';
     array = [];
     domElements = [];
@@ -216,6 +215,7 @@ async function insertionSort() {
         while (j >= 0 && array[j] > key) {
 
             await sleep(ANIMATION_SPEED / 2);
+            if (id !== currentExecutionId) return ;
 
             domElements[j].style.left = `${getLeftPosition(j + 1)}px`;
             domElements[j + 1] = domElements[j];
@@ -226,6 +226,7 @@ async function insertionSort() {
             j--;
             await sleep(ANIMATION_SPEED / 2);
         }
+            if (id !== currentExecutionId) return ;
 
 
         if (j >= 0) {
@@ -235,6 +236,7 @@ async function insertionSort() {
             domElements[j].style.backgroundColor = '';
             markAsSorted(j);
         }
+            if (id !== currentExecutionId) return ;
 
         array[j + 1] = key;
         domElements[j + 1] = keyElement;
@@ -245,6 +247,8 @@ async function insertionSort() {
         keyElement.classList.add('sorted');
 
         await sleep(ANIMATION_SPEED);
+        if (id !== currentExecutionId) return ;
+
     }
     if (id === currentExecutionId) stopAnimation();
     display();
@@ -355,6 +359,7 @@ async function mergeSort() {
             if (domElements[index]) domElements[index].style.opacity = '0.3';
         }
         await sleep(ANIMATION_SPEED);
+        if (id !== currentExecutionId) return ;
     
         let leftValues = [];
         let leftElements = [];
@@ -374,14 +379,18 @@ async function mergeSort() {
         let i = 0; 
         let j = 0; 
         let k = start; 
+        if (id !== currentExecutionId) return ;
     
         while (i < leftValues.length && j < rightValues.length) {
+        if (id !== currentExecutionId) return ;
     
             leftElements[i].style.backgroundColor = '#f39c12';
             rightElements[j].style.backgroundColor = '#f39c12';
             await sleep(ANIMATION_SPEED / 2);
     
             if (leftValues[i] <= rightValues[j]) {
+                if (id !== currentExecutionId) return ;
+
                 rightElements[j].style.backgroundColor = '';
                 leftElements[i].style.left = `${getLeftPosition(k)}px`;
                 leftElements[i].style.opacity = '1';
@@ -391,6 +400,8 @@ async function mergeSort() {
                 domElements[k] = leftElements[i];
                 i++;
             } else {
+                if (id !== currentExecutionId) return ;
+    
                 leftElements[i].style.backgroundColor = '';
                 rightElements[j].style.left = `${getLeftPosition(k)}px`;
                 rightElements[j].style.opacity = '1';
@@ -403,9 +414,12 @@ async function mergeSort() {
     
             k++;
             await sleep(ANIMATION_SPEED);
+            if (id !== currentExecutionId) return ;
+
         }
     
         while (i < leftValues.length) {
+             if (id !== currentExecutionId) return ;
     
             leftElements[i].style.left = `${getLeftPosition(k)}px`;
             leftElements[i].style.opacity = '1';
@@ -419,6 +433,7 @@ async function mergeSort() {
         }
     
         while (j < rightValues.length) {
+            if (id !== currentExecutionId) return ;
     
             rightElements[j].style.left = `${getLeftPosition(k)}px`;
             rightElements[j].style.opacity = '1';
@@ -482,6 +497,7 @@ async function quickSort() {
                     domElements[i].style.backgroundColor = '#e67e22'; 
                     await sleep(ANIMATION_SPEED / 2);
                 }
+                 if (id !== currentExecutionId) return ;
 
                 // تنفيذ التبديل
                 await swap(i, j, id);
