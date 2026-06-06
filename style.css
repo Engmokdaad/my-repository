@@ -41,7 +41,12 @@ button {
 button:hover {
     background-color: #2980b9;
 }
-
+button#Reset{
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
 #array-container {
     margin-top: 20px;
     position: relative;
@@ -50,9 +55,30 @@ button:hover {
     background-color: #1e1e1e;
     border-radius: 10px;
     overflow: hidden;
+    color: #f39c12;
+    text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
-
+#about-container {
+    margin-top: 20px;
+    padding: 20px;
+    position: relative;
+    width: 300px;
+    font-size: 14px;
+    color: #2397e4;
+    height: 400px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    text-align: right;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+#about-container h4{
+    color: #7ac5ff;
+}
+#about-container h5{
+    color: #bae1ff;
+    display: inline-block;
+}
 .array-element {
     position: absolute;
     bottom: 0;
@@ -118,3 +144,5 @@ button:hover {
     color: transparent; /* إخفاء النص في البداية */
     transition: height 0.4s ease, background-color 0.4s ease;
 }
+
+
