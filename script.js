@@ -709,7 +709,7 @@ let currentWindowWidth = window.innerWidth;
 
 window.addEventListener('resize', () => {
     // التحقق مما إذا كان "العرض" فقط هو الذي تغير
-    if (window.innerWidth === currentWindowWidth) return;تحديث المتغيرات بناءً على العرض الجديد
+    if (window.innerWidth === currentWindowWidth) return;
     containerWidth = container.clientWidth;
     ELEMENT_WIDTH = Math.min(40, (containerWidth - (array.length - 1) * 5) / array.length);
 
