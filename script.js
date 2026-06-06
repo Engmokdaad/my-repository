@@ -705,9 +705,11 @@ async function quickSort() {
 window.onload = () => {
     initArray();
 }
-// أضف هذه الشيفرة في نهاية ملف script.js
+let currentWindowWidth = window.innerWidth;
+
 window.addEventListener('resize', () => {
-    // تحديث المتغيرات بناءً على العرض الجديد
+    // التحقق مما إذا كان "العرض" فقط هو الذي تغير
+    if (window.innerWidth === currentWindowWidth) return;تحديث المتغيرات بناءً على العرض الجديد
     containerWidth = container.clientWidth;
     ELEMENT_WIDTH = Math.min(40, (containerWidth - (array.length - 1) * 5) / array.length);
 
