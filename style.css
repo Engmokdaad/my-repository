@@ -164,8 +164,8 @@ button#Reset {
     }
 
     .array-element {
-        font-size: 10px; /* تصغير الأرقام داخل الأعمدة */
+        font-size: 9px; /* تصغير الأرقام داخل الأعمدة */
         padding-top: 5px;
-        width: 20px;
+        width: 18px;
     }
 }
