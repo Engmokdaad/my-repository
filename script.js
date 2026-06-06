@@ -8,8 +8,11 @@ let animation = false;
 
 let currentExecutionId = 0; // متغير لتتبع التشغيل الحالي ومنع التداخل
 let ANIMATION_SPEED = 400; // السرعة الافتراضية المبدئية (×1)
-const ELEMENT_WIDTH = 40;
-const SPACING = 10;
+
+// قم بتغيير const إلى let
+let containerWidth = container.clientWidth;
+let ELEMENT_WIDTH = Math.min(40, (containerWidth - (15 - 1) * 5) / 15);
+const SPACING = 0;//window.innerWidth < 600 ? 2 : 8;
 
 async function runBubbleSort() {
 
@@ -208,7 +211,7 @@ function sleep(ms) {
 /**
  * دالة لتهيئة أو إعادة بناء المصفوفة بقيم عشوائية
  */
-function initArray(size = 15, copy = false) {
+function initArray(size = 15, copy = null) {
     container.innerHTML = '';
     aboutHeader.innerHTML = 'خوارزميات الفرز (Sorting Algorithms):';
     aboutBody.innerHTML =
@@ -230,14 +233,14 @@ function initArray(size = 15, copy = false) {
             value = Math.floor(Math.random() * 330) + 40;
         }
         else {
-            value = copyArray[i];
+            value = copy[i];
         }
         array.push(value);
         const div = document.createElement('div');
         div.classList.add('array-element');
         div.style.height = `${value}px`;
         div.innerText = value;
-
+        
         const leftPosition = startOffset + i * (ELEMENT_WIDTH + SPACING);
         div.style.left = `${leftPosition}px`;
 
@@ -249,7 +252,7 @@ function initArray(size = 15, copy = false) {
     document.getElementById('Reset').style.display = 'none';
 }
 function Reset() {
-    initArray(copyArray.length, true)
+    initArray(copyArray.length, copyArray)
     document.getElementById('Reset').style.display = 'none';
 
 }
@@ -702,3 +705,14 @@ async function quickSort() {
 window.onload = () => {
     initArray();
 }
+// أضف هذه الشيفرة في نهاية ملف script.js
+window.addEventListener('resize', () => {
+    // تحديث المتغيرات بناءً على العرض الجديد
+    containerWidth = container.clientWidth;
+    ELEMENT_WIDTH = Math.min(40, (containerWidth - (array.length - 1) * 5) / array.length);
+
+    // إذا لم تكن هناك خوارزمية تعمل، قم بإعادة رسم الأعمدة في أماكنها الصحيحة
+    if (!animation && array.length > 0) {
+        initArray(array.length, array);
+    }
+});

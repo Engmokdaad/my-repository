@@ -17,6 +17,7 @@ body {
 .header {
     margin-top: 30px;
     text-align: center;
+    width: 90%; /* السماح للترويسة بأخذ عرض مناسب */
 }
 
 .controls {
@@ -24,6 +25,7 @@ body {
     display: flex;
     gap: 10px;
     justify-content: center;
+    flex-wrap: wrap; /* مهم جداً: يسمح بنزول الأزرار لسطر جديد في الشاشات الصغيرة */
 }
 
 button {
@@ -31,26 +33,36 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    margin-right: 10px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 18px; /* تصغير الخط قليلاً ليتناسب مع الشاشات المتنوعة */
     transition: background-color 0.2s;
 }
 
 button:hover {
     background-color: #2980b9;
 }
-button#Reset{
+
+button#Reset {
     display: none;
     position: absolute;
     bottom: 10px;
     left: 10px;
 }
-#array-container {
+
+/* التعديل الأساسي للتجاوب */
+.visualizer-wrapper {
+    width: 90%;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* المسافة بين الرسوم البيانية وصندوق المعلومات */
+}
+
+#array-container {
     position: relative;
-    width: 800px;
+    width: 70%;
     height: 400px;
     background-color: #1e1e1e;
     border-radius: 10px;
@@ -59,11 +71,11 @@ button#Reset{
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
+
 #about-container {
-    margin-top: 20px;
     padding: 20px;
     position: relative;
-    width: 300px;
+    width: 28%;
     font-size: 14px;
     color: #2397e4;
     height: 400px;
@@ -71,19 +83,26 @@ button#Reset{
     border-radius: 10px;
     text-align: right;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    overflow-y: auto; /* إضافة شريط تمرير إذا زاد النص */
 }
-#about-container h4{
+
+#about-container h4 {
     color: #7ac5ff;
+    margin-bottom: 10px;
 }
-#about-container h5{
+
+#about-container h5 {
     color: #bae1ff;
     display: inline-block;
+    margin-bottom: 5px;
 }
+
 .array-element {
     position: absolute;
     bottom: 0;
-    width: 40px;
-    background-color: #3498db; /* اللون الافتراضي */
+    width: 30px;
+    margin: auto;
+    background-color: #3498db;
     border-radius: 4px 4px 0 0;
     transition: left 0.4s ease, background-color 0.4s ease, height 0.4s ease;
     display: flex;
@@ -95,54 +114,58 @@ button#Reset{
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
 }
 
-/* فئات مساعدة لتغيير الألوان أثناء العمليات */
 .array-element.active {
-    background-color: #e74c3c !important; /* لون العنصر أثناء المقارنة أو التبديل */
+    background-color: #e74c3c !important;
 }
 
 .array-element.sorted {
-    background-color: #2ecc71 !important; /* لون العنصر عند استقراره في مكانه النهائي */
+    background-color: #2ecc71 !important;
 }
 
-/* غلاف يجمع حاوية المتغير وحاوية المصفوفة */
-.visualizer-wrapper {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px; /* مسافة بين المتغير والمصفوفة */
+/* ========================================= */
+/* استعلامات الوسائط (Media Queries) للتجاوب */
+/* ========================================= */
+
+/* للأجهزة اللوحية (Tablets) والشاشات المتوسطة */
+@media (max-width: 992px) {
+    .visualizer-wrapper {
+        flex-direction: column; /* تحويل العرض إلى عمودي */
+        align-items: center;
+    }
+
+    #array-container, #about-container {
+        width: 100%; /* جعل الحاويات تأخذ العرض بالكامل */
+    }
+
+    #about-container {
+        height: auto;
+        min-height: 200px; /* السماح للصندوق بالتمدد حسب طول النص */
+    }
+    .array-element {
+        width: 25px;
+        font-size: 14px; /* تصغير الأرقام داخل الأعمدة */
+
+    }
 }
 
-/* حاوية المتغير الخارجي */
-.variable-container {
-    position: relative;
-    width: 80px;
-    height: 400px; /* نفس ارتفاع حاوية المصفوفة */
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    border: 2px dashed #7f8c8d; /* تمييزها بخط متقطع لتبدو كخانة ذاكرة */
+/* للهواتف المحمولة (Mobile) */
+@media (max-width: 600px) {
+    button {
+        font-size: 14px; /* تصغير الخط في الموبايل */
+        padding: 8px 12px;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+
+    #array-container {
+        height: 400px; /* تقليل ارتفاع حاوية الرسم البياني */
+    }
+
+    .array-element {
+        font-size: 10px; /* تصغير الأرقام داخل الأعمدة */
+        padding-top: 5px;
+        width: 20px;
+    }
 }
-
-/* عنوان المتغير */
-.variable-label {
-    position: absolute;
-    top: 15px;
-    color: #f39c12; /* لون ذهبي للفت الانتباه */
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-/* تعديل لعنصر المصفوفة ليكون ثابتاً داخل حاوية المتغير */
-.static-element {
-    position: absolute; 
-    bottom: 0;
-    left: auto; /* إلغاء خاصية left لأننا لا نحتاج لتحريكه يميناً ويساراً */
-    background-color: #9b59b6; /* لون بنفسجي لتمييزه عن عناصر المصفوفة الزرقاء */
-    height: 0; /* يبدأ بارتفاع 0 */
-    color: transparent; /* إخفاء النص في البداية */
-    transition: height 0.4s ease, background-color 0.4s ease;
-}
-
-
